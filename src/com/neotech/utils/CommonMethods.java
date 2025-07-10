@@ -47,7 +47,7 @@ public class CommonMethods extends BaseClass {
 	 */
 	public static void clickRadioOrCheckbox(List<WebElement> elementList, String selectValue) {
 		for (WebElement el : elementList) {
-			String elementValue = el.getDomAttribute("value").trim();//eklenti yapildi.
+			String elementValue = el.getAttribute("value").trim();
 
 			if (elementValue.equals(selectValue) && el.isEnabled()) {
 				el.click();
@@ -231,6 +231,16 @@ public class CommonMethods extends BaseClass {
 	}
 
 	/**
+	 * This method waits until the element is visible in page.
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public static WebElement waitForVisibility(WebElement element) {
+		return getWaitObject().until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	/**
 	 * This method waits until the provided element is clickable in page.
 	 * 
 	 * @param locator
@@ -268,15 +278,15 @@ public class CommonMethods extends BaseClass {
 		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 	}
 
-	public static void oneSec() throws InterruptedException {
+	public static void oneSec()  {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1000);//bu yontem ile projemizde exseption firlatmamiza gerek yok.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void threeSec() throws InterruptedException {
+	public static void threeSec() {
 		try {
 			Thread.sleep(3000);
 		} catch (Exception e) {
@@ -284,7 +294,7 @@ public class CommonMethods extends BaseClass {
 		}
 	}
 
-	public static void fiveSec() throws InterruptedException {
+	public static void fiveSec()  {
 		try {
 			Thread.sleep(5000);
 		} catch (Exception e) {
@@ -292,7 +302,7 @@ public class CommonMethods extends BaseClass {
 		}
 	}
 
-	public static void tenSec() throws InterruptedException {
+	public static void tenSec()  {
 		try {
 			Thread.sleep(10000);
 		} catch (Exception e) {
